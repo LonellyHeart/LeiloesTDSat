@@ -21,13 +21,20 @@ public class conectaDAO {
         Connection conn = null;
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
-            
-        } catch (SQLException erro){
-            JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
-        }
-        return conn;
+         
+              conn = null;
+              
+              Class.forName("com.mysql.cj.jdbc.Driver");
+              conn = DriverManager.getConnection("jdbc:mysql://localhost/etapa4", "root", "1234"); //Supersenha0112 ou 1234
+              System.out.println("Conectou com o banco de dados!!!!");
+          } catch (SQLException ex) {
+              System.out.println("Erro: Não foi possivel se conectar no banco de dados!");
+          } catch (ClassNotFoundException ex) {
+              System.out.println("Erro: Driver JDBC nao encontrado!.");
+          }       
+
+          return conn;
+      }
     }
     
 }
